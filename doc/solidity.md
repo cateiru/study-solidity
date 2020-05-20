@@ -118,6 +118,18 @@ contract SimpleStorage {
       5
       ```
     
+  
+- 定数状態変数
+
+  - `constant`を使用。
+
+    ```sol
+    uint constant x = 32**32 + 8;
+    string constant text = "abc";
+    bytes32 constant myHash = keccak256("abc");
+    ```
+
+    
 
 ### 演算子
 
@@ -231,6 +243,16 @@ contract MappingUser {
   - 現在のコントラクトをアドレスに変換します。
 - `selfdesutruct(address payable recipient)`
   - 現在のコントラクトを破棄し、その資金を指定されたアドレスに送信します。
+- 可視性
+  - `external`
+    - 他のコントラクトからまたはトランザクションを介して呼び出すことができます。
+    - 外部関数`f`を内部で呼び出すことは出来ません。(`f()`は機能しないが`this.f()`は機能する)
+  - `public`
+    - 内部またはメッセージを介して呼び出すことができます。
+  - `internal`
+    - 内部的にのみ(現在のコントラクト、またはそこから派生したコントラクト内から)アクセス可能。
+  - `private`
+    - 完全なプライベート。それが定義されているコントラクトでのみ表示される。
 
 ## 制御構造
 
@@ -267,5 +289,35 @@ contract MappingUser {
   }
   ```
 
-  
+## `new`によるコントラクトの作成
+
+- newキーワードを使用して、他のコントラクトを作成することが出来ます。
+
+```sol
+pragma solidity ^0.5.0;
+
+contract D {
+    uint public x;
+    constructor(uint a) public payable {
+        x = a;
+    }
+}
+
+contract C {
+    D d = new D(4); // will be executed as part of C's constructor
+
+    function createD(uint arg) public {
+        D newD = new D(arg);
+        newD.x();
+    }
+
+    function createAndEndowD(uint arg, uint amount) public payable {
+        // Send ether along with the creation
+        D newD = (new D).value(amount)(arg);
+        newD.x();
+    }
+}
+```
+
+
 

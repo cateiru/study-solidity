@@ -1,2 +1,3 @@
 # study-solidity
-study of solidity
+
+solidityを勉強する。

@@ -76,7 +76,7 @@ contract SimpleStorage {
 
   - `transfer()`関数
 
-    - `<address>.send(x)`を使用することで`<address>`に`x`weiのetherを送金することができる。
+    - `<address>.transfer(x)`を使用することで`<address>`に`x`weiのetherを送金することができる。
 
     ```sol
     contract Test {

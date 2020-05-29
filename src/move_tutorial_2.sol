@@ -27,3 +27,4 @@ contract MyContract {
         wallet.transfer(msg.value);
     }
 }
+

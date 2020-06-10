@@ -173,3 +173,5 @@ tags
 .history
 
 # End of https://www.gitignore.io/api/vim,macos,solidity,visualstudiocode
+
+ethreum/

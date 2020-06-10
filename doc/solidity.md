@@ -37,7 +37,7 @@ contract SimpleStorage {
 
 - int型の変数`x`を宣言する。
   - `int x;`(初期値は0)
-  - `int x = 10;`(初期値を入れることができる)
+  - `int x = 10;`（初期値を入れることができる）
 
 ### 変数
 
@@ -45,7 +45,7 @@ contract SimpleStorage {
   - `int16` , `int8` というようにintの後に**8~256**までの変数のビット長の指定がある。
   - 数字が省略され`int`と指定された場合は`int256`と同等であり、デフォルト値は0。
 
-- 符号なし整数型(自然数のみ)
+- 符号なし整数型（自然数のみ）
 
   - `uint16`, `uint8` というようにuintの後に**8~256**までの変数のビット長の指定がある。
   - 数字が省略され`uint`と指定された場合は`uint256`と同等であり、デフォルト値は0。
@@ -62,12 +62,12 @@ contract SimpleStorage {
 
   - `address payable`にすることでetherを送信可能にできるか出来ないかの設定ができる。
 
-    - `payable`あり→支払い(送信)可能
-    - `payable`なし→支払い(送信)不可能
+    - `payable`あり→支払い（送信）可能
+    - `payable`なし→支払い（送信）不可能
 
   - `balance`属性
 
-    - アドレスが保有するether量が取得可能。
+    - アドレスが保有するether量を取得可能。
 
     ```sol
     address a = 0xa; // アドレス型変数aに0xaのアドレスを格納
@@ -90,10 +90,10 @@ contract SimpleStorage {
 - 配列
 
   - 固定長
-    
+
     - データ型`T`、長さ`k`の配列→`T[k]`で宣言する。
     - [example](../src/array.sol)
-  
+
     ```text
     > arrayTest.getUintArray()
     [100, 99, 98, 97, 96]
@@ -102,23 +102,22 @@ contract SimpleStorage {
     > arrayTest.getString(1)
     "Orange"
     ```
-    
+
   - 可変長
-    
+
     - データ型`T`の配列→`T[]`で宣言する。
-    
+
     - `length`属性、`push`関数
-    
+
       - [example](../src/array_variable.sol)
-    
+
       ```text
       > pushLengthTest.getArray()
       [10, 11, 12, 13, 14]
       > pushLengthTest.getLength()
       5
       ```
-    
-  
+
 - 定数状態変数
 
   - `constant`を使用。
@@ -129,17 +128,15 @@ contract SimpleStorage {
     bytes32 constant myHash = keccak256("abc");
     ```
 
-    
-
 ### 演算子
 
 - 比較演算子
-  - `!`(論理否定), `&&`(論理積), `||`(論理和), `==`(等しい), `!=`(等しくない)
+  - `!`（論理否定）, `&&`（論理積）, `||`（論理和）, `==`（等しい）, `!=`（等しくない）
 - ビット演算子
-  - `&`, `|`, `^`(ビット単位の排他的論理和), `~`(ビット否定)
+  - `&`, `|`, `^`（ビット単位の排他的論理和）, `~`（ビット否定）
   - 例: `~int256(0) == int256(-1)`
 - シフト演算子
-  - `<<`(左シフト), `>>`(右シフト)
+  - `<<`（左シフト）, `>>`（右シフト）
 - 加算、減算、乗算
   - 2の補数表現でラップするためオーバーフローを考慮する必要がある。
 - 除算
@@ -246,11 +243,11 @@ contract MappingUser {
 - 可視性
   - `external`
     - 他のコントラクトからまたはトランザクションを介して呼び出すことができます。
-    - 外部関数`f`を内部で呼び出すことは出来ません。(`f()`は機能しないが`this.f()`は機能する)
+    - 外部関数`f`を内部で呼び出すことはできません。（`f()`は機能しないが`this.f()`は機能する）
   - `public`
     - 内部またはメッセージを介して呼び出すことができます。
   - `internal`
-    - 内部的にのみ(現在のコントラクト、またはそこから派生したコントラクト内から)アクセス可能。
+    - 内部的にのみ（現在のコントラクト、またはそこから派生したコントラクト内で）アクセス可能。
   - `private`
     - 完全なプライベート。それが定義されているコントラクトでのみ表示される。
 
@@ -266,7 +263,7 @@ contract MappingUser {
 
   ```sol
   pragma solidity >=0.4.16 <0.6.0;
-  
+
   contract C {
       function g(uint a) public pure returns (uint ret) { return a + f(); }
       function f() internal pure returns (uint ret) { return g(7) + f(); }
@@ -277,11 +274,11 @@ contract MappingUser {
 
   ```sol
   pragma solidity >=0.4.0 <0.6.0;
-  
+
   contract InfoFeed {
       function info() public payable returns (uint ret) { return 42; }
   }
-  
+
   contract Consumer {
       InfoFeed feed;
       function setFeed(InfoFeed addr) public { feed = addr; }
@@ -291,7 +288,7 @@ contract MappingUser {
 
 ## `new`によるコントラクトの作成
 
-- newキーワードを使用して、他のコントラクトを作成することが出来ます。
+- newキーワードを使用して、他のコントラクトを作成できます。
 
 ```sol
 pragma solidity ^0.5.0;
@@ -318,6 +315,3 @@ contract C {
     }
 }
 ```
-
-
-
